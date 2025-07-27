@@ -11,7 +11,7 @@ phases:
   pre_build:
     commands:
       - echo Logging into Amazon EKS...
-      - aws eks update-kubeconfig --region <your-region> --name <your-cluster-name>
+      - aws eks update-kubeconfig --region <eu-north-1> --name <devsecops-cluster>
   build:
     commands:
       - echo Applying deployment.yaml...
