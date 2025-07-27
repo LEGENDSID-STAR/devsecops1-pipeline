@@ -1,0 +1,18 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      kubectl: 1.27
+    commands:
+      - echo Installing AWS CLI and EKS tools...
+      - curl -o eksctl.tar.gz https://github.com/weaveworks/eksctl/releases/download/v0.210.0/eksctl_Linux_amd64.tar.gz
+      - tar -xzf eksctl.tar.gz -C /usr/local/bin
+  pre_build:
+    commands:
+      - echo Logging into Amazon EKS...
+      - aws eks update-kubeconfig --region <your-region> --name <your-cluster-name>
+  build:
+    commands:
+      - echo Applying deployment.yaml...
+      - kubectl apply -f deployment.yaml
